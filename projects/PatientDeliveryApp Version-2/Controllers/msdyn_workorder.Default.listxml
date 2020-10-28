@@ -1,0 +1,187 @@
+﻿<EntityList UseSyncFilter="true">
+  <Attributes>
+    <EntityName>msdyn_workorder</EntityName>
+    <CamelCase>msdyn_workorder</CamelCase>
+    <VisualStudioProjectId>00000000-0000-0000-0000-000000000000</VisualStudioProjectId>
+    <ClassBinding/>
+  </Attributes>
+  <Name>Default</Name>
+  <Kind>List</Kind>
+  <AutoWideWidth>0</AutoWideWidth>
+  <OrderBy>mzk_scheduledstartdatetime</OrderBy>
+  <SharedVariables>&lt;SharedVariables&gt;&lt;Variables&gt;&lt;SharedVariable usage="None"&gt;&lt;Name&gt;FullAddress&lt;/Name&gt;&lt;CrmType&gt;String&lt;/CrmType&gt;&lt;/SharedVariable&gt;&lt;/Variables&gt;&lt;/SharedVariables&gt;</SharedVariables>
+  <SerializedBindings>
+    <string>mzk_actualvisitenddatetime</string>
+    <string>mzk_actualvisitstartdatetime</string>
+    <string>mzk_address</string>
+    <string>msdyn_address1</string>
+    <string>msdyn_address2</string>
+    <string>msdyn_address3</string>
+    <string>msdyn_addressname</string>
+    <string>msdyn_billingaccount</string>
+    <string>msdyn_bookingsummary</string>
+    <string>msdyn_servicerequest</string>
+    <string>msdyn_closedby</string>
+    <string>msdyn_timeclosed</string>
+    <string>msdyn_country</string>
+    <string>msdyn_stateorprovince</string>
+    <string>createdby</string>
+    <string>createdon</string>
+    <string>transactioncurrencyid</string>
+    <string>msdyn_estimatesubtotalamount</string>
+    <string>msdyn_estimatesubtotalamount_base</string>
+    <string>exchangerate</string>
+    <string>mzk_failurevisitreason</string>
+    <string>msdyn_instructions</string>
+    <string>msdyn_ismobile</string>
+    <string>msdyn_latitude</string>
+    <string>msdyn_longitude</string>
+    <string>modifiedon</string>
+    <string>ownerid</string>
+    <string>mzk_packageserial</string>
+    <string>msdyn_parentworkorder</string>
+    <string>mzk_customer</string>
+    <string>msdyn_postalcode</string>
+    <string>msdyn_pricelist</string>
+    <string>mzk_primarycontact</string>
+    <string>msdyn_customerasset</string>
+    <string>msdyn_primaryincidentdescription</string>
+    <string>msdyn_primaryincidentestimatedduration</string>
+    <string>msdyn_primaryincidenttype</string>
+    <string>msdyn_priority</string>
+    <string>mzk_recievedby</string>
+    <string>mzk_recievingtype</string>
+    <string>msdyn_reportedbycontact</string>
+    <string>msdyn_taxcode</string>
+    <string>mzk_scheduledenddatetime</string>
+    <string>mzk_scheduledstartdatetime</string>
+    <string>msdyn_serviceaccount</string>
+    <string>mzk_skipvisitreason</string>
+    <string>mzk_visitstatus</string>
+    <string>statecode</string>
+    <string>statuscode</string>
+    <string>msdyn_substatus</string>
+    <string>msdyn_subtotalamount</string>
+    <string>msdyn_subtotalamount_base</string>
+    <string>msdyn_systemstatus</string>
+    <string>msdyn_taxable</string>
+    <string>msdyn_serviceterritory</string>
+    <string>msdyn_timefrompromised</string>
+    <string>msdyn_timetopromised</string>
+    <string>msdyn_totalamount</string>
+    <string>msdyn_totalamount_base</string>
+    <string>msdyn_totalsalestax</string>
+    <string>msdyn_totalsalestax_base</string>
+    <string>msdyn_city</string>
+    <string>versionnumber</string>
+    <string>mzk_visittype</string>
+    <string>msdyn_workorderid</string>
+    <string>msdyn_name</string>
+    <string>msdyn_workordersummary</string>
+    <string>msdyn_workordertype</string>
+  </SerializedBindings>
+  <HasGpsFields>true</HasGpsFields>
+  <MaxColumns>0</MaxColumns>
+  <TemplateSelectorRule>&lt;?xml version="1.0" ?&gt;&lt;Workflow e="true" isvalid="true" syntaxVersion="11" version="0"&gt;&lt;definition e="false"&gt;&lt;var&gt;Address&lt;/var&gt;&lt;func&gt;CreateListVariable&lt;/func&gt;&lt;type&gt;StringList&lt;/type&gt;&lt;/definition&gt;&lt;function e="false"&gt;&lt;var&gt;Address&lt;/var&gt;&lt;func&gt;AddItem&lt;/func&gt;&lt;arg&gt;var:Entity.msdyn_address1&lt;/arg&gt;&lt;/function&gt;&lt;function e="false"&gt;&lt;var&gt;Address&lt;/var&gt;&lt;func&gt;AddItem&lt;/func&gt;&lt;arg&gt;var:Entity.msdyn_postalcode&lt;/arg&gt;&lt;/function&gt;&lt;function e="false"&gt;&lt;var&gt;Shared.FullAddress&lt;/var&gt;&lt;func&gt;Format&lt;/func&gt;&lt;arg&gt;String:{0} {1}&lt;/arg&gt;&lt;arg&gt;var:Address&lt;/arg&gt;&lt;/function&gt;&lt;/Workflow&gt;</TemplateSelectorRule>
+  <IFrame>file://WorkOrderList/WorkOrderList.html</IFrame>
+  <Fetch version="1.0">
+    <entity name="msdyn_workorder">
+      <filter type="and">
+        <condition attribute="mzk_scheduledstartdatetime" operator="today"/>
+        <filter type="or">
+          <filter type="and">
+            <condition attribute="mzk_visitstatus" operator="eq" value="275380013"/>
+            <condition attribute="mzk_visittype" operator="in">
+              <value>275380001</value>
+              <value>275380002</value>
+              <value>275380006</value>
+            </condition>
+          </filter>
+          <filter type="and">
+            <condition attribute="mzk_visittype" operator="in">
+              <value>275380004</value>
+              <value>275380003</value>
+              <value>275380007</value>
+            </condition>
+            <condition attribute="mzk_visitstatus" operator="eq" value="275380001"/>
+            <condition attribute="mzk_schedulestatus" operator="eq" value="275380001"/>
+          </filter>
+        </filter>
+      </filter>
+      <link-entity name="mzk_masterdata" alias="L0" from="mzk_masterdataid" to="mzk_deliverymethods" link-type="inner">
+        <filter type="and">
+          <condition attribute="mzk_internaldelivery" operator="eq" value="1"/>
+        </filter>
+      </link-entity>
+      <link-entity name="bookableresource" alias="L1" from="bookableresourceid" to="mzk_resource" link-type="inner">
+        <filter type="and">
+          <condition attribute="userid" operator="eq-userid"/>
+        </filter>
+      </link-entity>
+    </entity>
+  </Fetch>
+  <SerializedTemplates>
+    <RowTemplate>
+      <DesignWidth>320</DesignWidth>
+      <DesignHeight>48</DesignHeight>
+      <Name>Default</Name>
+      <Width>340</Width>
+      <Height>90</Height>
+      <SerializedChildren>
+        <CellTemplate SchemaName="msdyn_name">
+          <StyleName>gray</StyleName>
+          <Bounds>111,14,79,16</Bounds>
+          <CellKind>0</CellKind>
+          <Anchor>0</Anchor>
+        </CellTemplate>
+        <CellTemplate SchemaName="msdyn_serviceaccount">
+          <StyleName>primary</StyleName>
+          <Bounds>111,28,308,24</Bounds>
+          <CellKind>0</CellKind>
+          <Anchor>5</Anchor>
+        </CellTemplate>
+        <CellTemplate SchemaName="mzk_scheduledstartdatetime">
+          <StyleName>time_only</StyleName>
+          <Bounds>18,24,84,20</Bounds>
+          <CellKind>0</CellKind>
+          <Anchor>5</Anchor>
+        </CellTemplate>
+        <CellTemplate SchemaName="mzk_primarycontact">
+          <StyleName>gray</StyleName>
+          <Bounds>257,14,81,16</Bounds>
+          <CellKind>0</CellKind>
+          <Anchor>8</Anchor>
+        </CellTemplate>
+        <CellTemplate SchemaName="mzk_scheduledenddatetime">
+          <StyleName>time_only</StyleName>
+          <Bounds>18,50,84,20</Bounds>
+          <CellKind>0</CellKind>
+          <Anchor>5</Anchor>
+        </CellTemplate>
+        <CellTemplate SchemaName="mzk_visittype">
+          <StyleName>gray</StyleName>
+          <Bounds>111,65,227,16</Bounds>
+          <CellKind>0</CellKind>
+          <Anchor>5</Anchor>
+        </CellTemplate>
+        <CellTemplate SchemaName="MapPin">
+          <IsConstant>true</IsConstant>
+          <StyleName>MapPin</StyleName>
+          <Bounds>108,49,16,16</Bounds>
+          <CellKind>1</CellKind>
+          <Anchor>5</Anchor>
+        </CellTemplate>
+        <CellTemplate SchemaName="FullAddress">
+          <StyleName>gray</StyleName>
+          <Bounds>118,47,222,20</Bounds>
+          <CellKind>0</CellKind>
+          <Anchor>5</Anchor>
+        </CellTemplate>
+      </SerializedChildren>
+    </RowTemplate>
+  </SerializedTemplates>
+  <CustomProperties>
+    <SerializedClassBinding name="FullAddress" label="Shared.FullAddress" type="String"/>
+    <SerializedClassBinding name="Address" label="Address" type="StringList"/>
+  </CustomProperties>
+</EntityList>

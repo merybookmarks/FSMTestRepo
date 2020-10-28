@@ -1,0 +1,1 @@
+﻿msdyn_workorder;;msdyn_workorder.Default,@Setup,@About,@@Version;file://AppVersion.html,@@Feedback;

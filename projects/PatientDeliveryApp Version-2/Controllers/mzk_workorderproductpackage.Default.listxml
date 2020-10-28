@@ -1,0 +1,32 @@
+﻿<EntityList UseSyncFilter="true">
+  <Attributes>
+    <EntityName>mzk_workorderproductpackage</EntityName>
+    <CamelCase>mzk_workorderproductpackage</CamelCase>
+  </Attributes>
+  <Name>Default</Name>
+  <Kind>List</Kind>
+  <AutoWideWidth>0</AutoWideWidth>
+  <OrderBy>mzk_packageid</OrderBy>
+  <SerializedBindings>
+    <string>mzk_workorderproductpackageid</string>
+    <string>mzk_packageid</string>
+  </SerializedBindings>
+  <MaxColumns>0</MaxColumns>
+  <SerializedTemplates>
+    <RowTemplate>
+      <DesignWidth>320</DesignWidth>
+      <DesignHeight>48</DesignHeight>
+      <Name>Default</Name>
+      <Width>320</Width>
+      <Height>48</Height>
+      <SerializedChildren>
+        <CellTemplate SchemaName="mzk_packageid">
+          <StyleName>primary</StyleName>
+          <Bounds>10,2,302,28</Bounds>
+          <CellKind>0</CellKind>
+          <Anchor>13</Anchor>
+        </CellTemplate>
+      </SerializedChildren>
+    </RowTemplate>
+  </SerializedTemplates>
+</EntityList>

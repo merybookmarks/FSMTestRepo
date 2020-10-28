@@ -1,0 +1,115 @@
+﻿<EntityList>
+  <Attributes>
+    <EntityName>msdyn_workorder</EntityName>
+    <CamelCase>msdyn_workorder</CamelCase>
+  </Attributes>
+  <Name>Scheduled View</Name>
+  <Kind>DashboardList</Kind>
+  <AutoWideWidth>0</AutoWideWidth>
+  <OrderBy>mzk_scheduledstartdatetime</OrderBy>
+  <SerializedBindings>
+    <string>mzk_actualvisitenddatetime</string>
+    <string>mzk_actualvisitstartdatetime</string>
+    <string>msdyn_addressname</string>
+    <string>msdyn_billingaccount</string>
+    <string>msdyn_bookingsummary</string>
+    <string>msdyn_servicerequest</string>
+    <string>msdyn_city</string>
+    <string>msdyn_closedby</string>
+    <string>msdyn_timeclosed</string>
+    <string>msdyn_country</string>
+    <string>createdby</string>
+    <string>createdon</string>
+    <string>transactioncurrencyid</string>
+    <string>msdyn_estimatesubtotalamount</string>
+    <string>msdyn_estimatesubtotalamount_base</string>
+    <string>exchangerate</string>
+    <string>mzk_failurevisitreason</string>
+    <string>msdyn_instructions</string>
+    <string>msdyn_ismobile</string>
+    <string>msdyn_latitude</string>
+    <string>msdyn_longitude</string>
+    <string>modifiedon</string>
+    <string>ownerid</string>
+    <string>mzk_packageserial</string>
+    <string>msdyn_parentworkorder</string>
+    <string>mzk_customer</string>
+    <string>msdyn_postalcode</string>
+    <string>msdyn_pricelist</string>
+    <string>msdyn_customerasset</string>
+    <string>msdyn_primaryincidentdescription</string>
+    <string>msdyn_primaryincidentestimatedduration</string>
+    <string>msdyn_primaryincidenttype</string>
+    <string>msdyn_priority</string>
+    <string>mzk_recievedby</string>
+    <string>mzk_recievingtype</string>
+    <string>msdyn_reportedbycontact</string>
+    <string>msdyn_taxcode</string>
+    <string>mzk_scheduledenddatetime</string>
+    <string>mzk_scheduledstartdatetime</string>
+    <string>msdyn_serviceaccount</string>
+    <string>msdyn_serviceterritory</string>
+    <string>mzk_skipvisitreason</string>
+    <string>msdyn_stateorprovince</string>
+    <string>statecode</string>
+    <string>statuscode</string>
+    <string>msdyn_address1</string>
+    <string>msdyn_address2</string>
+    <string>msdyn_address3</string>
+    <string>msdyn_substatus</string>
+    <string>msdyn_subtotalamount</string>
+    <string>msdyn_subtotalamount_base</string>
+    <string>msdyn_systemstatus</string>
+    <string>msdyn_taxable</string>
+    <string>msdyn_timefrompromised</string>
+    <string>msdyn_timetopromised</string>
+    <string>msdyn_totalamount</string>
+    <string>msdyn_totalamount_base</string>
+    <string>msdyn_totalsalestax</string>
+    <string>msdyn_totalsalestax_base</string>
+    <string>versionnumber</string>
+    <string>mzk_visitstatus</string>
+    <string>msdyn_workorderid</string>
+    <string>msdyn_name</string>
+    <string>msdyn_workordersummary</string>
+    <string>msdyn_workordertype</string>
+  </SerializedBindings>
+  <HasGpsFields>true</HasGpsFields>
+  <MaxColumns>0</MaxColumns>
+  <Fetch version="1.0">
+    <entity name="msdyn_workorder">
+      <filter type="and">
+        <condition attribute="mzk_visitstatus" operator="eq" value="275380013"/>
+      </filter>
+    </entity>
+  </Fetch>
+  <SerializedTemplates>
+    <RowTemplate>
+      <DesignWidth>320</DesignWidth>
+      <DesignHeight>48</DesignHeight>
+      <Name>Default</Name>
+      <Width>450</Width>
+      <Height>48</Height>
+      <SerializedChildren>
+        <CellTemplate SchemaName="msdyn_name">
+          <StyleName>primary</StyleName>
+          <Bounds>1,11,113,22</Bounds>
+          <CellKind>0</CellKind>
+          <Anchor>13</Anchor>
+        </CellTemplate>
+        <CellTemplate SchemaName="msdyn_serviceaccount">
+          <StyleName>primary</StyleName>
+          <Bounds>113,11,109,22</Bounds>
+          <CellKind>0</CellKind>
+          <Anchor>5</Anchor>
+        </CellTemplate>
+        <CellTemplate SchemaName="mzk_scheduledstartdatetime">
+          <StyleName>primary</StyleName>
+          <Bounds>222,11,156,22</Bounds>
+          <CellKind>0</CellKind>
+          <Anchor>5</Anchor>
+        </CellTemplate>
+      </SerializedChildren>
+    </RowTemplate>
+  </SerializedTemplates>
+</EntityList>

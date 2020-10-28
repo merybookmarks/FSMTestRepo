@@ -1,0 +1,887 @@
+﻿<fetchcollection>
+  <fetch version="1.0">
+    <entity name="account">
+      <link-entity name="msdyn_workorder" alias="L0" from="msdyn_serviceaccount" to="accountid" link-type="inner">
+        <filter type="and">
+          <condition attribute="mzk_scheduledstartdatetime" operator="today"/>
+          <filter type="or">
+            <filter type="and">
+              <condition attribute="mzk_visitstatus" operator="eq" value="275380013"/>
+              <condition attribute="mzk_visittype" operator="in">
+                <value>275380001</value>
+                <value>275380002</value>
+                <value>275380006</value>
+              </condition>
+            </filter>
+            <filter type="and">
+              <condition attribute="mzk_visittype" operator="in">
+                <value>275380004</value>
+                <value>275380003</value>
+                <value>275380007</value>
+              </condition>
+              <condition attribute="mzk_visitstatus" operator="eq" value="275380001"/>
+              <condition attribute="mzk_schedulestatus" operator="eq" value="275380001"/>
+            </filter>
+          </filter>
+        </filter>
+        <link-entity name="mzk_masterdata" alias="L1" from="mzk_masterdataid" to="mzk_deliverymethods" link-type="inner">
+          <filter type="and">
+            <condition attribute="mzk_internaldelivery" operator="eq" value="1"/>
+          </filter>
+        </link-entity>
+        <link-entity name="bookableresource" alias="L2" from="bookableresourceid" to="mzk_resource" link-type="inner">
+          <filter type="and">
+            <condition attribute="userid" operator="eq-userid"/>
+          </filter>
+        </link-entity>
+      </link-entity>
+    </entity>
+  </fetch>
+  <fetch version="1.0">
+    <entity name="contact">
+      <filter type="and">
+        <filter type="or">
+          <condition attribute="mzk_contact" entityname="L0" operator="not-null"/>
+          <filter type="and">
+            <condition attribute="mzk_scheduledstartdatetime" entityname="cd" operator="today"/>
+            <condition attribute="userid" entityname="bc" operator="eq-userid"/>
+          </filter>
+          <filter type="and">
+            <condition attribute="mzk_scheduledstartdatetime" entityname="cf" operator="today"/>
+            <condition attribute="userid" entityname="L3" operator="eq-userid"/>
+          </filter>
+        </filter>
+      </filter>
+      <link-entity name="mzk_relationship" alias="ca" from="mzk_connectedto" to="contactid" link-type="outer">
+        <link-entity name="contact" alias="cb" from="contactid" to="mzk_customer" link-type="outer">
+          <link-entity name="account" alias="cc" from="primarycontactid" to="contactid" link-type="outer">
+            <link-entity name="msdyn_workorder" alias="cd" from="msdyn_serviceaccount" to="accountid" link-type="outer">
+              <filter type="and">
+                <condition attribute="mzk_scheduledstartdatetime" operator="today"/>
+                <filter type="or">
+                  <filter type="and">
+                    <condition attribute="mzk_visittype" operator="in">
+                      <value>275380001</value>
+                      <value>275380002</value>
+                      <value>275380006</value>
+                    </condition>
+                    <condition attribute="mzk_visitstatus" operator="eq" value="275380013"/>
+                  </filter>
+                  <filter type="and">
+                    <condition attribute="mzk_visittype" operator="in">
+                      <value>275380004</value>
+                      <value>275380003</value>
+                      <value>275380007</value>
+                    </condition>
+                    <condition attribute="mzk_visitstatus" operator="eq" value="275380001"/>
+                    <condition attribute="mzk_schedulestatus" operator="eq" value="275380001"/>
+                  </filter>
+                </filter>
+              </filter>
+              <link-entity name="mzk_masterdata" alias="bb" from="mzk_masterdataid" to="mzk_deliverymethods" link-type="outer">
+                <filter type="and">
+                  <condition attribute="mzk_internaldelivery" operator="eq" value="1"/>
+                </filter>
+              </link-entity>
+              <link-entity name="bookableresource" alias="bc" from="bookableresourceid" to="mzk_resource" link-type="outer">
+                <filter type="and">
+                  <condition attribute="userid" operator="eq-userid"/>
+                </filter>
+              </link-entity>
+            </link-entity>
+          </link-entity>
+        </link-entity>
+      </link-entity>
+      <link-entity name="account" alias="ce" from="primarycontactid" to="contactid" link-type="outer">
+        <link-entity name="msdyn_workorder" alias="cf" from="msdyn_serviceaccount" to="accountid" link-type="outer">
+          <filter type="and">
+            <condition attribute="mzk_scheduledstartdatetime" operator="today"/>
+            <filter type="or">
+              <filter type="and">
+                <condition attribute="mzk_visitstatus" operator="eq" value="275380013"/>
+                <condition attribute="mzk_visittype" operator="in">
+                  <value>275380001</value>
+                  <value>275380002</value>
+                  <value>275380006</value>
+                </condition>
+              </filter>
+              <filter type="and">
+                <condition attribute="mzk_visitstatus" operator="eq" value="275380001"/>
+                <condition attribute="mzk_visittype" operator="in">
+                  <value>275380004</value>
+                  <value>275380003</value>
+                  <value>275380007</value>
+                </condition>
+                <condition attribute="mzk_schedulestatus" operator="eq" value="275380001"/>
+              </filter>
+            </filter>
+          </filter>
+          <link-entity name="bookableresource" alias="L3" from="bookableresourceid" to="mzk_resource" link-type="outer">
+            <filter type="and">
+              <condition attribute="userid" operator="eq-userid"/>
+            </filter>
+          </link-entity>
+        </link-entity>
+      </link-entity>
+      <link-entity name="mzk_addressauthorizedrecipient" alias="L0" from="mzk_contact" to="contactid" link-type="outer"/>
+    </entity>
+  </fetch>
+  <fetch version="1.0">
+    <entity name="quote">
+      <filter type="and">
+        <condition attribute="modifiedon" operator="last-x-days" value="30"/>
+      </filter>
+    </entity>
+  </fetch>
+  <fetch version="1.0">
+    <entity name="salesorder">
+      <filter type="and">
+        <condition attribute="modifiedon" operator="last-x-days" value="30"/>
+      </filter>
+    </entity>
+  </fetch>
+  <fetch version="1.0">
+    <entity name="invoice">
+      <filter type="and">
+        <condition attribute="modifiedon" operator="last-x-days" value="30"/>
+      </filter>
+    </entity>
+  </fetch>
+  <fetch version="1.0">
+    <entity name="opportunity">
+      <link-entity name="msdyn_workorder" alias="L1" from="msdyn_opportunityid" to="opportunityid" link-type="inner">
+        <filter type="and">
+          <condition attribute="mzk_scheduledstartdatetime" operator="today"/>
+          <filter type="or">
+            <filter type="and">
+              <condition attribute="mzk_visitstatus" operator="eq" value="275380013"/>
+              <condition attribute="mzk_visittype" operator="in">
+                <value>275380001</value>
+                <value>275380002</value>
+                <value>275380006</value>
+              </condition>
+            </filter>
+            <filter type="and">
+              <condition attribute="mzk_visitstatus" operator="eq" value="275380001"/>
+              <condition attribute="mzk_visittype" operator="in">
+                <value>275380004</value>
+                <value>275380003</value>
+                <value>275380007</value>
+              </condition>
+              <condition attribute="mzk_schedulestatus" operator="eq" value="275380001"/>
+            </filter>
+          </filter>
+        </filter>
+        <link-entity name="mzk_masterdata" alias="L0" from="mzk_masterdataid" to="mzk_deliverymethods" link-type="inner">
+          <filter type="and">
+            <condition attribute="mzk_internaldelivery" operator="eq" value="1"/>
+          </filter>
+        </link-entity>
+        <link-entity name="bookableresource" alias="L2" from="bookableresourceid" to="mzk_resource" link-type="inner">
+          <filter type="and">
+            <condition attribute="userid" operator="eq-userid"/>
+          </filter>
+        </link-entity>
+      </link-entity>
+    </entity>
+  </fetch>
+  <fetch version="1.0">
+    <entity name="email">
+      <filter type="and">
+        <condition attribute="modifiedon" operator="last-x-days" value="10"/>
+      </filter>
+    </entity>
+  </fetch>
+  <fetch version="1.0">
+    <entity name="phonecall">
+      <filter type="and">
+        <condition attribute="modifiedon" operator="last-x-days" value="10"/>
+      </filter>
+    </entity>
+  </fetch>
+  <fetch version="1.0">
+    <entity name="task">
+      <filter type="and">
+        <condition attribute="modifiedon" operator="last-x-days" value="10"/>
+      </filter>
+    </entity>
+  </fetch>
+  <fetch version="1.0">
+    <entity name="appointment">
+      <filter type="and">
+        <condition attribute="modifiedon" operator="last-x-days" value="10"/>
+      </filter>
+    </entity>
+  </fetch>
+  <fetch version="1.0">
+    <entity name="incident">
+      <link-entity name="msdyn_workorder" alias="L0" from="msdyn_servicerequest" to="incidentid" link-type="inner">
+        <filter type="and">
+          <condition attribute="mzk_scheduledstartdatetime" operator="today"/>
+          <filter type="or">
+            <filter type="and">
+              <condition attribute="mzk_visittype" operator="in">
+                <value>275380001</value>
+                <value>275380002</value>
+                <value>275380006</value>
+              </condition>
+              <condition attribute="mzk_visitstatus" operator="eq" value="275380013"/>
+            </filter>
+            <filter type="and">
+              <condition attribute="mzk_visittype" operator="in">
+                <value>275380004</value>
+                <value>275380003</value>
+                <value>275380007</value>
+              </condition>
+              <condition attribute="mzk_visitstatus" operator="eq" value="275380001"/>
+              <condition attribute="mzk_schedulestatus" operator="eq" value="275380001"/>
+            </filter>
+          </filter>
+        </filter>
+        <link-entity name="mzk_masterdata" alias="L1" from="mzk_masterdataid" to="mzk_deliverymethods" link-type="inner">
+          <filter type="and">
+            <condition attribute="mzk_internaldelivery" operator="eq" value="1"/>
+          </filter>
+        </link-entity>
+        <link-entity name="bookableresource" alias="L2" from="bookableresourceid" to="mzk_resource" link-type="inner">
+          <filter type="and">
+            <condition attribute="userid" operator="eq-userid"/>
+          </filter>
+        </link-entity>
+      </link-entity>
+    </entity>
+  </fetch>
+  <fetch version="1.0">
+    <entity name="msdyn_taxcodedetail"/>
+  </fetch>
+  <fetch version="1.0">
+    <entity name="pricelevel"/>
+  </fetch>
+  <fetch version="1.0">
+    <entity name="msdyn_workorder">
+      <filter type="and">
+        <condition attribute="mzk_scheduledstartdatetime" operator="today"/>
+        <filter type="or">
+          <filter type="and">
+            <condition attribute="mzk_visitstatus" operator="eq" value="275380013"/>
+            <condition attribute="mzk_visittype" operator="in">
+              <value>275380001</value>
+              <value>275380002</value>
+              <value>275380006</value>
+            </condition>
+          </filter>
+          <filter type="and">
+            <condition attribute="mzk_visittype" operator="in">
+              <value>275380004</value>
+              <value>275380003</value>
+              <value>275380007</value>
+            </condition>
+            <condition attribute="mzk_visitstatus" operator="eq" value="275380001"/>
+            <condition attribute="mzk_schedulestatus" operator="eq" value="275380001"/>
+          </filter>
+        </filter>
+      </filter>
+      <link-entity name="mzk_masterdata" alias="L3" from="mzk_masterdataid" to="mzk_deliverymethods" link-type="inner">
+        <filter type="and">
+          <condition attribute="mzk_internaldelivery" operator="eq" value="1"/>
+        </filter>
+      </link-entity>
+      <link-entity name="bookableresource" alias="L4" from="bookableresourceid" to="mzk_resource" link-type="inner">
+        <filter type="and">
+          <condition attribute="userid" operator="eq-userid"/>
+        </filter>
+      </link-entity>
+    </entity>
+  </fetch>
+  <fetch version="1.0">
+    <entity name="bookableresourcebooking">
+      <filter type="and">
+        <condition attribute="statecode" operator="eq" value="0"/>
+        <filter type="or">
+          <filter type="and">
+            <condition attribute="endtime" operator="today"/>
+            <condition attribute="msdyn_fieldservicestatus" entityname="L1" operator="eq" value="690970004"/>
+          </filter>
+          <filter type="and">
+            <condition attribute="msdyn_fieldservicestatus" entityname="L1" operator="in">
+              <value>690970003</value>
+              <value>690970002</value>
+              <value>690970001</value>
+              <value>690970000</value>
+            </condition>
+            <filter type="or">
+              <condition attribute="starttime" operator="next-x-days" value="7"/>
+              <condition attribute="starttime" operator="today"/>
+              <condition attribute="endtime" operator="next-x-days" value="7"/>
+              <condition attribute="endtime" operator="today"/>
+            </filter>
+          </filter>
+        </filter>
+      </filter>
+      <link-entity name="msdyn_workorder" alias="L0" from="msdyn_workorderid" to="msdyn_workorder" link-type="outer">
+        <filter type="and">
+          <condition attribute="statecode" operator="eq" value="0"/>
+          <condition attribute="msdyn_systemstatus" operator="in">
+            <value>690970003</value>
+            <value>690970002</value>
+            <value>690970001</value>
+            <value>690970000</value>
+          </condition>
+        </filter>
+      </link-entity>
+      <link-entity name="bookingstatus" alias="L1" from="bookingstatusid" to="bookingstatus" link-type="inner">
+        <filter type="and">
+          <condition attribute="msdyn_fieldservicestatus" operator="ne" value="690970005"/>
+          <condition attribute="statecode" operator="eq" value="0"/>
+        </filter>
+      </link-entity>
+      <link-entity name="bookableresource" alias="L2" from="bookableresourceid" to="resource" link-type="inner">
+        <filter type="and">
+          <condition attribute="userid" operator="eq-userid"/>
+        </filter>
+      </link-entity>
+    </entity>
+  </fetch>
+  <fetch version="1.0">
+    <entity name="msdyn_workorderproduct"/>
+  </fetch>
+  <fetch version="1.0">
+    <entity name="msdyn_workorderincident">
+      <link-entity name="msdyn_workorder" alias="L0" from="msdyn_workorderid" to="msdyn_workorder" link-type="inner">
+        <filter type="and">
+          <condition attribute="statecode" operator="eq" value="0"/>
+          <condition attribute="msdyn_systemstatus" operator="in">
+            <value>690970003</value>
+            <value>690970002</value>
+            <value>690970001</value>
+            <value>690970000</value>
+          </condition>
+        </filter>
+        <link-entity name="bookableresourcebooking" alias="L1" from="msdyn_workorder" to="msdyn_workorderid" link-type="inner">
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="0"/>
+            <filter type="or">
+              <condition attribute="starttime" operator="next-x-days" value="7"/>
+              <condition attribute="starttime" operator="today"/>
+              <condition attribute="endtime" operator="next-x-days" value="7"/>
+              <condition attribute="endtime" operator="today"/>
+            </filter>
+          </filter>
+          <link-entity name="bookingstatus" alias="L2" from="bookingstatusid" to="bookingstatus" link-type="inner">
+            <filter type="and">
+              <condition attribute="statecode" operator="eq" value="0"/>
+              <condition attribute="msdyn_fieldservicestatus" operator="in">
+                <value>690970003</value>
+                <value>690970002</value>
+                <value>690970001</value>
+                <value>690970000</value>
+              </condition>
+            </filter>
+          </link-entity>
+        </link-entity>
+      </link-entity>
+    </entity>
+  </fetch>
+  <fetch version="1.0">
+    <entity name="msdyn_workorderservice"/>
+  </fetch>
+  <fetch version="1.0">
+    <entity name="msdyn_workorderservicetask">
+      <link-entity name="msdyn_workorder" alias="L0" from="msdyn_workorderid" to="msdyn_workorder" link-type="inner">
+        <filter type="and">
+          <condition attribute="statecode" operator="eq" value="0"/>
+          <condition attribute="msdyn_systemstatus" operator="in">
+            <value>690970003</value>
+            <value>690970002</value>
+            <value>690970001</value>
+            <value>690970000</value>
+          </condition>
+        </filter>
+        <link-entity name="bookableresourcebooking" alias="L1" from="msdyn_workorder" to="msdyn_workorderid" link-type="inner">
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="0"/>
+            <filter type="or">
+              <condition attribute="starttime" operator="next-x-days" value="7"/>
+              <condition attribute="starttime" operator="today"/>
+              <condition attribute="endtime" operator="next-x-days" value="7"/>
+              <condition attribute="endtime" operator="today"/>
+            </filter>
+          </filter>
+          <link-entity name="bookingstatus" alias="L2" from="bookingstatusid" to="bookingstatus" link-type="inner">
+            <filter type="and">
+              <condition attribute="statecode" operator="eq" value="0"/>
+              <condition attribute="msdyn_fieldservicestatus" operator="in">
+                <value>690970003</value>
+                <value>690970002</value>
+                <value>690970001</value>
+                <value>690970000</value>
+              </condition>
+            </filter>
+          </link-entity>
+        </link-entity>
+      </link-entity>
+    </entity>
+  </fetch>
+  <fetch version="1.0">
+    <entity name="msdyn_bookingtimestamp">
+      <filter type="and">
+        <condition attribute="createdon" operator="last-x-days" value="1"/>
+      </filter>
+    </entity>
+  </fetch>
+  <fetch version="1.0">
+    <entity name="msdyn_agreement">
+      <filter type="and">
+        <condition attribute="statecode" operator="eq" value="0"/>
+        <condition attribute="msdyn_systemstatus" operator="in">
+          <value>690970001</value>
+          <value>690970000</value>
+        </condition>
+        <condition attribute="modifiedon" operator="last-x-days" value="10"/>
+      </filter>
+    </entity>
+  </fetch>
+  <fetch version="1.0">
+    <entity name="msdyn_agreementbookingincident">
+      <filter type="and">
+        <condition attribute="msdyn_name" operator="eq" value="@NameFilter@"/>
+      </filter>
+    </entity>
+  </fetch>
+  <fetch version="1.0">
+    <entity name="msdyn_agreementinvoicedate">
+      <filter type="and">
+        <condition attribute="msdyn_name" operator="eq" value="@NameFilter@"/>
+      </filter>
+    </entity>
+  </fetch>
+  <fetch version="1.0">
+    <entity name="msdyn_agreementinvoiceproduct">
+      <filter type="and">
+        <condition attribute="msdyn_name" operator="eq" value="@NameFilter@"/>
+      </filter>
+    </entity>
+  </fetch>
+  <fetch version="1.0">
+    <entity name="msdyn_agreementinvoicesetup">
+      <filter type="and">
+        <condition attribute="msdyn_name" operator="eq" value="@NameFilter@"/>
+      </filter>
+    </entity>
+  </fetch>
+  <fetch version="1.0">
+    <entity name="msdyn_agreementbookingproduct">
+      <filter type="and">
+        <condition attribute="msdyn_name" operator="eq" value="@NameFilter@"/>
+      </filter>
+    </entity>
+  </fetch>
+  <fetch version="1.0">
+    <entity name="msdyn_agreementbookingsetup">
+      <filter type="and">
+        <condition attribute="msdyn_name" operator="eq" value="@NameFilter@"/>
+      </filter>
+    </entity>
+  </fetch>
+  <fetch version="1.0">
+    <entity name="msdyn_agreementbookingdate">
+      <filter type="and">
+        <condition attribute="msdyn_name" operator="eq" value="@NameFilter@"/>
+      </filter>
+    </entity>
+  </fetch>
+  <fetch version="1.0">
+    <entity name="msdyn_agreementbookingservice">
+      <filter type="and">
+        <condition attribute="msdyn_name" operator="eq" value="@NameFilter@"/>
+      </filter>
+    </entity>
+  </fetch>
+  <fetch version="1.0">
+    <entity name="msdyn_agreementbookingservicetask">
+      <filter type="and">
+        <condition attribute="msdyn_name" operator="eq" value="@NameFilter@"/>
+      </filter>
+    </entity>
+  </fetch>
+  <fetch version="1.0">
+    <entity name="msdyn_rma">
+      <filter type="and">
+        <condition attribute="statecode" operator="eq" value="0"/>
+      </filter>
+    </entity>
+  </fetch>
+  <fetch version="1.0">
+    <entity name="msdyn_rmaproduct">
+      <filter type="and">
+        <condition attribute="statecode" operator="eq" value="0"/>
+      </filter>
+    </entity>
+  </fetch>
+  <fetch version="1.0">
+    <entity name="msdyn_rmareceipt">
+      <filter type="and">
+        <condition attribute="statecode" operator="eq" value="0"/>
+      </filter>
+    </entity>
+  </fetch>
+  <fetch version="1.0">
+    <entity name="msdyn_rmareceiptproduct">
+      <filter type="and">
+        <condition attribute="statecode" operator="eq" value="0"/>
+      </filter>
+    </entity>
+  </fetch>
+  <fetch version="1.0">
+    <entity name="msdyn_rtv">
+      <filter type="and">
+        <condition attribute="statecode" operator="eq" value="0"/>
+      </filter>
+    </entity>
+  </fetch>
+  <fetch version="1.0">
+    <entity name="msdyn_rtvproduct">
+      <filter type="and">
+        <condition attribute="statecode" operator="eq" value="0"/>
+      </filter>
+    </entity>
+  </fetch>
+  <fetch version="1.0">
+    <entity name="msdyn_timeoffrequest">
+      <filter type="and">
+        <condition attribute="statuscode" operator="ne" value="2"/>
+      </filter>
+    </entity>
+  </fetch>
+  <fetch version="1.0">
+    <entity name="mzk_masterdata">
+      <filter type="and">
+        <condition attribute="mzk_type" operator="in">
+          <value>275380015</value>
+          <value>275380021</value>
+        </condition>
+      </filter>
+    </entity>
+  </fetch>
+  <fetch version="1.0">
+    <entity name="mzk_workorderpackageitems"/>
+  </fetch>
+  <fetch version="1.0">
+    <entity name="mzk_workorderproductpackagetemperature"/>
+  </fetch>
+  <fetch version="1.0">
+    <entity name="mzk_workorderproductpackage"/>
+  </fetch>
+  <fetch version="1.0">
+    <entity name="mzk_contractmanagement">
+      <link-entity name="incident" alias="L0" from="mzk_contract" to="mzk_contractmanagementid" link-type="inner">
+        <link-entity name="msdyn_workorder" alias="L1" from="msdyn_servicerequest" to="incidentid" link-type="inner">
+          <filter type="and">
+            <condition attribute="mzk_scheduledstartdatetime" operator="today"/>
+            <filter type="or">
+              <filter type="and">
+                <condition attribute="mzk_visitstatus" operator="eq" value="275380013"/>
+                <condition attribute="mzk_visittype" operator="in">
+                  <value>275380001</value>
+                  <value>275380002</value>
+                  <value>275380006</value>
+                </condition>
+              </filter>
+              <filter type="and">
+                <condition attribute="mzk_visitstatus" operator="eq" value="275380001"/>
+                <condition attribute="mzk_visittype" operator="in">
+                  <value>275380004</value>
+                  <value>275380003</value>
+                  <value>275380007</value>
+                </condition>
+                <condition attribute="mzk_schedulestatus" operator="eq" value="275380001"/>
+              </filter>
+            </filter>
+          </filter>
+          <link-entity name="mzk_masterdata" alias="L2" from="mzk_masterdataid" to="mzk_deliverymethods" link-type="inner">
+            <filter type="and">
+              <condition attribute="mzk_internaldelivery" operator="eq" value="1"/>
+            </filter>
+          </link-entity>
+          <link-entity name="bookableresource" alias="L3" from="bookableresourceid" to="mzk_resource" link-type="inner">
+            <filter type="and">
+              <condition attribute="userid" operator="eq-userid"/>
+            </filter>
+          </link-entity>
+        </link-entity>
+      </link-entity>
+    </entity>
+  </fetch>
+  <fetch version="1.0">
+    <entity name="product">
+      <link-entity name="msdyn_workorderproduct" alias="L0" from="msdyn_product" to="productid" link-type="inner">
+        <link-entity name="msdyn_workorder" alias="L1" from="msdyn_workorderid" to="msdyn_workorder" link-type="inner">
+          <filter type="and">
+            <condition attribute="mzk_scheduledstartdatetime" operator="today"/>
+            <filter type="or">
+              <filter type="and">
+                <condition attribute="mzk_visitstatus" operator="eq" value="275380013"/>
+                <condition attribute="mzk_visittype" operator="in">
+                  <value>275380001</value>
+                  <value>275380002</value>
+                  <value>275380006</value>
+                </condition>
+              </filter>
+              <filter type="and">
+                <condition attribute="mzk_visitstatus" operator="eq" value="275380001"/>
+                <condition attribute="mzk_visittype" operator="in">
+                  <value>275380004</value>
+                  <value>275380003</value>
+                  <value>275380007</value>
+                </condition>
+                <condition attribute="mzk_schedulestatus" operator="eq" value="275380001"/>
+              </filter>
+            </filter>
+          </filter>
+          <link-entity name="mzk_masterdata" alias="L3" from="mzk_masterdataid" to="mzk_deliverymethods" link-type="inner">
+            <filter type="and">
+              <condition attribute="mzk_internaldelivery" operator="eq" value="1"/>
+            </filter>
+          </link-entity>
+          <link-entity name="bookableresource" alias="L5" from="bookableresourceid" to="mzk_resource" link-type="inner">
+            <filter type="and">
+              <condition attribute="userid" operator="eq-userid"/>
+            </filter>
+          </link-entity>
+        </link-entity>
+      </link-entity>
+    </entity>
+  </fetch>
+  <fetch version="1.0">
+    <entity name="mzk_reasoncode">
+      <filter type="and">
+        <condition attribute="mzk_reasontype" operator="in">
+          <value>275380009</value>
+          <value>104</value>
+          <value>275380003</value>
+        </condition>
+        <condition attribute="statecode" operator="eq" value="0"/>
+      </filter>
+    </entity>
+  </fetch>
+  <fetch version="1.0">
+    <entity name="annotation">
+      <link-entity name="msdyn_workorder" alias="L0" from="msdyn_workorderid" to="objectid" link-type="inner">
+        <filter type="and">
+          <condition attribute="mzk_scheduledstartdatetime" operator="today"/>
+          <filter type="or">
+            <filter type="and">
+              <condition attribute="mzk_visitstatus" operator="eq" value="275380013"/>
+              <condition attribute="mzk_visittype" operator="in">
+                <value>275380001</value>
+                <value>275380002</value>
+                <value>275380006</value>
+              </condition>
+            </filter>
+            <filter type="and">
+              <condition attribute="mzk_visittype" operator="in">
+                <value>275380004</value>
+                <value>275380003</value>
+                <value>275380007</value>
+              </condition>
+              <condition attribute="mzk_visitstatus" operator="eq" value="275380001"/>
+              <condition attribute="mzk_schedulestatus" operator="eq" value="275380001"/>
+            </filter>
+          </filter>
+        </filter>
+        <link-entity name="mzk_masterdata" alias="L1" from="mzk_masterdataid" to="mzk_deliverymethods" link-type="inner">
+          <filter type="and">
+            <condition attribute="mzk_internaldelivery" operator="eq" value="1"/>
+          </filter>
+        </link-entity>
+        <link-entity name="bookableresource" alias="L2" from="bookableresourceid" to="mzk_resource" link-type="inner">
+          <filter type="and">
+            <condition attribute="userid" operator="eq-userid"/>
+          </filter>
+        </link-entity>
+      </link-entity>
+    </entity>
+  </fetch>
+  <fetch version="1.0">
+    <entity name="mzk_relationship">
+      <link-entity name="contact" alias="L2" from="contactid" to="mzk_customer" link-type="inner">
+        <link-entity name="account" alias="L4" from="primarycontactid" to="contactid" link-type="inner">
+          <link-entity name="msdyn_workorder" alias="L5" from="msdyn_serviceaccount" to="accountid" link-type="inner">
+            <filter type="and">
+              <condition attribute="mzk_scheduledstartdatetime" operator="today"/>
+              <filter type="or">
+                <filter type="and">
+                  <condition attribute="mzk_visitstatus" operator="eq" value="275380013"/>
+                  <condition attribute="mzk_visittype" operator="in">
+                    <value>275380001</value>
+                    <value>275380002</value>
+                    <value>275380006</value>
+                  </condition>
+                </filter>
+                <filter type="and">
+                  <condition attribute="mzk_visitstatus" operator="eq" value="275380001"/>
+                  <condition attribute="mzk_visittype" operator="in">
+                    <value>275380004</value>
+                    <value>275380003</value>
+                    <value>275380007</value>
+                  </condition>
+                  <condition attribute="mzk_schedulestatus" operator="eq" value="275380001"/>
+                </filter>
+              </filter>
+            </filter>
+            <link-entity name="mzk_masterdata" alias="L0" from="mzk_masterdataid" to="mzk_deliverymethods" link-type="inner">
+              <filter type="and">
+                <condition attribute="mzk_internaldelivery" operator="eq" value="1"/>
+              </filter>
+            </link-entity>
+            <link-entity name="bookableresource" alias="L1" from="bookableresourceid" to="mzk_resource" link-type="inner">
+              <filter type="and">
+                <condition attribute="userid" operator="eq-userid"/>
+              </filter>
+            </link-entity>
+          </link-entity>
+        </link-entity>
+      </link-entity>
+    </entity>
+  </fetch>
+  <fetch version="1.0">
+    <entity name="customeraddress">
+      <link-entity name="account" alias="L0" from="accountid" to="parentid" link-type="inner">
+        <link-entity name="msdyn_workorder" alias="L1" from="msdyn_serviceaccount" to="accountid" link-type="inner"/>
+      </link-entity>
+    </entity>
+  </fetch>
+  <fetch version="1.0">
+    <entity name="mzk_customeraddress">
+      <filter type="and">
+        <filter type="or">
+          <filter type="and">
+            <condition attribute="mzk_scheduledstartdatetime" entityname="L3" operator="today"/>
+            <condition attribute="userid" entityname="L8" operator="eq-userid"/>
+          </filter>
+          <filter type="and">
+            <condition attribute="mzk_scheduledstartdatetime" entityname="L10" operator="today"/>
+            <condition attribute="userid" entityname="L12" operator="eq-userid"/>
+          </filter>
+          <filter type="and">
+            <condition attribute="mzk_customeraddress" entityname="L0" operator="not-null"/>
+            <condition attribute="mzk_authorizerecipients" entityname="L0" operator="eq" value="1"/>
+          </filter>
+        </filter>
+      </filter>
+      <link-entity name="contact" alias="L1" from="contactid" to="mzk_customerid" link-type="outer">
+        <link-entity name="account" alias="L2" from="primarycontactid" to="contactid" link-type="outer">
+          <link-entity name="msdyn_workorder" alias="L3" from="msdyn_serviceaccount" to="accountid" link-type="outer">
+            <filter type="and">
+              <condition attribute="mzk_scheduledstartdatetime" operator="today"/>
+              <filter type="or">
+                <filter type="and">
+                  <condition attribute="mzk_visittype" operator="in">
+                    <value>275380001</value>
+                    <value>275380002</value>
+                    <value>275380006</value>
+                  </condition>
+                  <condition attribute="mzk_visitstatus" operator="eq" value="275380013"/>
+                </filter>
+                <filter type="and">
+                  <condition attribute="mzk_visittype" operator="in">
+                    <value>275380004</value>
+                    <value>275380003</value>
+                    <value>275380007</value>
+                  </condition>
+                  <condition attribute="mzk_visitstatus" operator="eq" value="275380001"/>
+                  <condition attribute="mzk_schedulestatus" operator="eq" value="275380001"/>
+                </filter>
+              </filter>
+            </filter>
+            <link-entity name="mzk_masterdata" alias="L6" from="mzk_masterdataid" to="mzk_deliverymethods" link-type="outer">
+              <filter type="and">
+                <condition attribute="mzk_internaldelivery" operator="eq" value="1"/>
+              </filter>
+            </link-entity>
+            <link-entity name="bookableresource" alias="L8" from="bookableresourceid" to="mzk_resource" link-type="outer">
+              <filter type="and">
+                <condition attribute="userid" operator="eq-userid"/>
+              </filter>
+            </link-entity>
+          </link-entity>
+        </link-entity>
+      </link-entity>
+      <link-entity name="account" alias="L9" from="accountid" to="mzk_customerid" link-type="outer">
+        <link-entity name="msdyn_workorder" alias="L10" from="msdyn_serviceaccount" to="accountid" link-type="outer">
+          <filter type="and">
+            <condition attribute="mzk_scheduledstartdatetime" operator="today"/>
+            <filter type="or">
+              <filter type="and">
+                <condition attribute="mzk_visitstatus" operator="eq" value="275380013"/>
+                <condition attribute="mzk_visittype" operator="in">
+                  <value>275380001</value>
+                  <value>275380002</value>
+                  <value>275380006</value>
+                </condition>
+              </filter>
+              <filter type="and">
+                <condition attribute="mzk_visitstatus" operator="eq" value="275380001"/>
+                <condition attribute="mzk_visittype" operator="in">
+                  <value>275380004</value>
+                  <value>275380003</value>
+                  <value>275380007</value>
+                </condition>
+                <condition attribute="mzk_schedulestatus" operator="eq" value="275380001"/>
+              </filter>
+            </filter>
+          </filter>
+          <link-entity name="mzk_masterdata" alias="L11" from="mzk_masterdataid" to="mzk_deliverymethods" link-type="outer">
+            <filter type="and">
+              <condition attribute="mzk_internaldelivery" operator="eq" value="1"/>
+            </filter>
+          </link-entity>
+          <link-entity name="bookableresource" alias="L12" from="bookableresourceid" to="mzk_resource" link-type="outer">
+            <filter type="and">
+              <condition attribute="userid" operator="eq-userid"/>
+            </filter>
+          </link-entity>
+        </link-entity>
+      </link-entity>
+      <link-entity name="mzk_relationship" alias="L0" from="mzk_customeraddress" to="mzk_customeraddressid" link-type="outer"/>
+    </entity>
+  </fetch>
+  <fetch version="1.0">
+    <entity name="mzk_route">
+      <link-entity name="msdyn_workorder" alias="L0" from="mzk_deliveryroute" to="mzk_routeid" link-type="inner">
+        <filter type="and">
+          <condition attribute="mzk_scheduledstartdatetime" operator="today"/>
+          <filter type="or">
+            <filter type="and">
+              <condition attribute="mzk_visitstatus" operator="eq" value="275380013"/>
+              <condition attribute="mzk_visittype" operator="in">
+                <value>275380001</value>
+                <value>275380002</value>
+                <value>275380006</value>
+              </condition>
+            </filter>
+            <filter type="and">
+              <condition attribute="mzk_visitstatus" operator="eq" value="275380001"/>
+              <condition attribute="mzk_visittype" operator="in">
+                <value>275380004</value>
+                <value>275380003</value>
+                <value>275380007</value>
+              </condition>
+              <condition attribute="mzk_schedulestatus" operator="eq" value="275380001"/>
+            </filter>
+          </filter>
+        </filter>
+        <link-entity name="mzk_masterdata" alias="L1" from="mzk_masterdataid" to="mzk_deliverymethods" link-type="inner">
+          <filter type="and">
+            <condition attribute="mzk_internaldelivery" operator="eq" value="1"/>
+          </filter>
+        </link-entity>
+        <link-entity name="bookableresource" alias="L2" from="bookableresourceid" to="mzk_resource" link-type="inner">
+          <filter type="and">
+            <condition attribute="userid" operator="eq-userid"/>
+          </filter>
+        </link-entity>
+      </link-entity>
+    </entity>
+  </fetch>
+</fetchcollection>

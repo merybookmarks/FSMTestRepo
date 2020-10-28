@@ -1,0 +1,8 @@
+﻿<SESetup Version='1'>	
+	<UploadOrder>		
+		<Sequence>
+			<Entity>annotation</Entity>
+			<Entity>msdyn_workorder</Entity>			
+		</Sequence>		
+	</UploadOrder>
+</SESetup>

@@ -1,0 +1,53 @@
+﻿<EntityList>
+  <Attributes>
+    <EntityName>msdyn_workorder</EntityName>
+    <CamelCase>msdyn_workorder</CamelCase>
+  </Attributes>
+  <Name>Visit Status Scheduled View</Name>
+  <Kind>List</Kind>
+  <AutoWideWidth>0</AutoWideWidth>
+  <OrderBy>msdyn_name</OrderBy>
+  <SerializedBindings>
+    <string>mzk_scheduledstartdatetime</string>
+    <string>msdyn_serviceaccount</string>
+    <string>msdyn_workorderid</string>
+    <string>msdyn_name</string>
+  </SerializedBindings>
+  <MaxColumns>0</MaxColumns>
+  <Fetch version="1.0">
+    <entity name="msdyn_workorder">
+      <filter type="and">
+        <condition attribute="mzk_visitstatus" operator="eq" value="275380013"/>
+      </filter>
+    </entity>
+  </Fetch>
+  <SerializedTemplates>
+    <RowTemplate>
+      <DesignWidth>240</DesignWidth>
+      <DesignHeight>40</DesignHeight>
+      <Name>Default</Name>
+      <Width>450</Width>
+      <Height>38</Height>
+      <SerializedChildren>
+        <CellTemplate SchemaName="msdyn_name">
+          <StyleName>primary</StyleName>
+          <Bounds>0,3,124,23</Bounds>
+          <CellKind>0</CellKind>
+          <Anchor>13</Anchor>
+        </CellTemplate>
+        <CellTemplate SchemaName="msdyn_serviceaccount">
+          <StyleName>gray</StyleName>
+          <Bounds>124,3,94,23</Bounds>
+          <CellKind>0</CellKind>
+          <Anchor>5</Anchor>
+        </CellTemplate>
+        <CellTemplate SchemaName="mzk_scheduledstartdatetime">
+          <StyleName>gray</StyleName>
+          <Bounds>218,4,145,21</Bounds>
+          <CellKind>0</CellKind>
+          <Anchor>5</Anchor>
+        </CellTemplate>
+      </SerializedChildren>
+    </RowTemplate>
+  </SerializedTemplates>
+</EntityList>

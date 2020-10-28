@@ -1,0 +1,59 @@
+﻿<EntityList UseSyncFilter="true">
+  <Attributes>
+    <EntityName>mzk_customeraddress</EntityName>
+    <CamelCase>mzk_customeraddress</CamelCase>
+  </Attributes>
+  <Name>Default</Name>
+  <Kind>List</Kind>
+  <AutoWideWidth>0</AutoWideWidth>
+  <OrderBy>mzk_name</OrderBy>
+  <SerializedBindings>
+    <string>mzk_customeraddressid</string>
+    <string>mzk_customerid</string>
+    <string>mzk_name</string>
+    <string>mzk_line1</string>
+    <string>mzk_postalcode</string>
+  </SerializedBindings>
+  <MaxColumns>0</MaxColumns>
+  <SerializedTemplates>
+    <RowTemplate>
+      <DesignWidth>320</DesignWidth>
+      <DesignHeight>48</DesignHeight>
+      <Name>Default</Name>
+      <Width>320</Width>
+      <Height>73</Height>
+      <SerializedChildren>
+        <CellTemplate SchemaName="mzk_name">
+          <StyleName>primary</StyleName>
+          <Bounds>10,2,108,28</Bounds>
+          <CellKind>0</CellKind>
+          <Anchor>13</Anchor>
+        </CellTemplate>
+        <CellTemplate SchemaName="mzk_customerid">
+          <StyleName>primary</StyleName>
+          <Bounds>5,26,205,20</Bounds>
+          <CellKind>0</CellKind>
+          <Anchor>5</Anchor>
+        </CellTemplate>
+        <CellTemplate SchemaName="mzk_line1">
+          <StyleName>primary</StyleName>
+          <Bounds>118,3,199,21</Bounds>
+          <CellKind>0</CellKind>
+          <Anchor>5</Anchor>
+        </CellTemplate>
+        <CellTemplate SchemaName="mzk_postalcode">
+          <StyleName>primary</StyleName>
+          <Bounds>208,24,112,20</Bounds>
+          <CellKind>0</CellKind>
+          <Anchor>5</Anchor>
+        </CellTemplate>
+        <CellTemplate SchemaName="mzk_customeraddressid">
+          <StyleName>primary</StyleName>
+          <Bounds>0,53,230,20</Bounds>
+          <CellKind>0</CellKind>
+          <Anchor>5</Anchor>
+        </CellTemplate>
+      </SerializedChildren>
+    </RowTemplate>
+  </SerializedTemplates>
+</EntityList>

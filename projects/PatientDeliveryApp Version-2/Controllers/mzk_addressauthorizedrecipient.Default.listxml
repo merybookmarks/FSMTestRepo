@@ -1,0 +1,39 @@
+﻿<EntityList UseSyncFilter="true">
+  <Attributes>
+    <EntityName>mzk_addressauthorizedrecipient</EntityName>
+    <CamelCase>mzk_addressauthorizedrecipient</CamelCase>
+  </Attributes>
+  <Name>Default</Name>
+  <Kind>List</Kind>
+  <AutoWideWidth>0</AutoWideWidth>
+  <OrderBy>mzk_name</OrderBy>
+  <SerializedBindings>
+    <string>mzk_addressauthorizedrecipientid</string>
+    <string>mzk_name</string>
+    <string>mzk_contact</string>
+  </SerializedBindings>
+  <MaxColumns>0</MaxColumns>
+  <SerializedTemplates>
+    <RowTemplate>
+      <DesignWidth>320</DesignWidth>
+      <DesignHeight>48</DesignHeight>
+      <Name>Default</Name>
+      <Width>320</Width>
+      <Height>48</Height>
+      <SerializedChildren>
+        <CellTemplate SchemaName="mzk_name">
+          <StyleName>primary</StyleName>
+          <Bounds>10,2,302,28</Bounds>
+          <CellKind>0</CellKind>
+          <Anchor>13</Anchor>
+        </CellTemplate>
+        <CellTemplate SchemaName="mzk_contact">
+          <StyleName>primary</StyleName>
+          <Bounds>11,28,100,20</Bounds>
+          <CellKind>0</CellKind>
+          <Anchor>5</Anchor>
+        </CellTemplate>
+      </SerializedChildren>
+    </RowTemplate>
+  </SerializedTemplates>
+</EntityList>
