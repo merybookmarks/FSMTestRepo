@@ -885,4 +885,11 @@
       </link-entity>
     </entity>
   </fetch>
+  <fetch version="1.0">
+    <entity name="mzk_addressauthorizedrecipient">
+      <filter type="and">
+        <condition attribute="createdon" operator="today"/>
+      </filter>
+    </entity>
+  </fetch>
 </fetchcollection>
