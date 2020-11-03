@@ -3,7 +3,6 @@
     <entity name="account">
       <link-entity name="msdyn_workorder" alias="L0" from="msdyn_serviceaccount" to="accountid" link-type="inner">
         <filter type="and">
-          <condition attribute="statecode" operator="eq" value="0"/>
           <condition attribute="mzk_actualdropnumber" operator="not-null"/>
           <filter type="or">
             <filter type="and">
@@ -883,13 +882,6 @@
           </filter>
         </link-entity>
       </link-entity>
-    </entity>
-  </fetch>
-  <fetch version="1.0">
-    <entity name="mzk_addressauthorizedrecipient">
-      <filter type="and">
-        <condition attribute="createdon" operator="today"/>
-      </filter>
     </entity>
   </fetch>
 </fetchcollection>
