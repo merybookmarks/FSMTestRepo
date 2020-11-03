@@ -3,6 +3,7 @@
     <entity schema="account" permissions="896" xattr="8389504">
       <properties>
         <property schema="accountid" fieldpermissions="Read"/>
+        <property schema="accountnumber"/>
         <property schema="address1_city"/>
         <property schema="address1_country"/>
         <property schema="address1_latitude"/>
@@ -47,9 +48,9 @@
             <field schema="transactioncurrencyid"/>
           </fields>
         </index>
-        <index schema="idx_account_defaultpricelevelid" issystem="true">
+        <index schema="idx_account_primarycontactid" issystem="true">
           <fields>
-            <field schema="defaultpricelevelid"/>
+            <field schema="primarycontactid"/>
           </fields>
         </index>
         <index schema="idx_account_msdyn_serviceterritory" issystem="true">
@@ -62,6 +63,11 @@
             <field schema="ownerid"/>
           </fields>
         </index>
+        <index schema="idx_account_defaultpricelevelid" issystem="true">
+          <fields>
+            <field schema="defaultpricelevelid"/>
+          </fields>
+        </index>
         <index schema="idx_account_msdyn_salestaxcode" issystem="true">
           <fields>
             <field schema="msdyn_salestaxcode"/>
@@ -70,11 +76,6 @@
         <index schema="idx_account_msdyn_billingaccount" issystem="true">
           <fields>
             <field schema="msdyn_billingaccount"/>
-          </fields>
-        </index>
-        <index schema="idx_account_primarycontactid" issystem="true">
-          <fields>
-            <field schema="primarycontactid"/>
           </fields>
         </index>
         <index schema="idx_account_name" issystem="true">
@@ -243,11 +244,6 @@
         <property schema="versionnumber"/>
       </properties>
       <indexes>
-        <index schema="idx_bookableresourcebooking_msdyn_workorder" issystem="true">
-          <fields>
-            <field schema="msdyn_workorder"/>
-          </fields>
-        </index>
         <index schema="idx_bookableresourcebooking_bookingstatus" issystem="true">
           <fields>
             <field schema="bookingstatus"/>
@@ -258,14 +254,19 @@
             <field schema="transactioncurrencyid"/>
           </fields>
         </index>
-        <index schema="idx_bookableresourcebooking_msdyn_resourcegroup" issystem="true">
-          <fields>
-            <field schema="msdyn_resourcegroup"/>
-          </fields>
-        </index>
         <index schema="idx_bookableresourcebooking_ownerid" issystem="true">
           <fields>
             <field schema="ownerid"/>
+          </fields>
+        </index>
+        <index schema="idx_bookableresourcebooking_msdyn_workorder" issystem="true">
+          <fields>
+            <field schema="msdyn_workorder"/>
+          </fields>
+        </index>
+        <index schema="idx_bookableresourcebooking_msdyn_resourcegroup" issystem="true">
+          <fields>
+            <field schema="msdyn_resourcegroup"/>
           </fields>
         </index>
         <index schema="idx_bookableresourcebooking_resource" issystem="true">
@@ -363,14 +364,14 @@
         <property schema="telephone1"/>
       </properties>
       <indexes>
-        <index schema="idx_contact_parentcustomerid" issystem="true">
-          <fields>
-            <field schema="parentcustomerid"/>
-          </fields>
-        </index>
         <index schema="idx_contact_mzk_patientaccount" issystem="true">
           <fields>
             <field schema="mzk_patientaccount"/>
+          </fields>
+        </index>
+        <index schema="idx_contact_parentcustomerid" issystem="true">
+          <fields>
+            <field schema="parentcustomerid"/>
           </fields>
         </index>
         <index schema="idx_contact_ownerid" issystem="true">
@@ -608,6 +609,11 @@
             <field schema="mzk_deliverymethods"/>
           </fields>
         </index>
+        <index schema="idx_msdyn_workorder_msdyn_pricelist" issystem="true">
+          <fields>
+            <field schema="msdyn_pricelist"/>
+          </fields>
+        </index>
         <index schema="idx_msdyn_workorder_mzk_resource" issystem="true">
           <fields>
             <field schema="mzk_resource"/>
@@ -663,6 +669,11 @@
             <field schema="msdyn_customerasset"/>
           </fields>
         </index>
+        <index schema="idx_msdyn_workorder_msdyn_serviceterritory" issystem="true">
+          <fields>
+            <field schema="msdyn_serviceterritory"/>
+          </fields>
+        </index>
         <index schema="idx_msdyn_workorder_mzk_skipvisitreason" issystem="true">
           <fields>
             <field schema="mzk_skipvisitreason"/>
@@ -676,11 +687,6 @@
         <index schema="idx_msdyn_workorder_transactioncurrencyid" issystem="true">
           <fields>
             <field schema="transactioncurrencyid"/>
-          </fields>
-        </index>
-        <index schema="idx_msdyn_workorder_msdyn_serviceterritory" issystem="true">
-          <fields>
-            <field schema="msdyn_serviceterritory"/>
           </fields>
         </index>
         <index schema="idx_msdyn_workorder_msdyn_serviceaccount" issystem="true">
@@ -701,11 +707,6 @@
         <index schema="idx_msdyn_workorder_createdby" issystem="true">
           <fields>
             <field schema="createdby"/>
-          </fields>
-        </index>
-        <index schema="idx_msdyn_workorder_msdyn_pricelist" issystem="true">
-          <fields>
-            <field schema="msdyn_pricelist"/>
           </fields>
         </index>
         <index schema="idx_msdyn_workorder_mzk_failurevisitsubreason" issystem="true">
@@ -813,6 +814,11 @@
             <field schema="msdyn_unit"/>
           </fields>
         </index>
+        <index schema="idx_msdyn_workorderproduct_msdyn_workorderincident" issystem="true">
+          <fields>
+            <field schema="msdyn_workorderincident"/>
+          </fields>
+        </index>
         <index schema="idx_msdyn_workorderproduct_msdyn_workorder" issystem="true">
           <fields>
             <field schema="msdyn_workorder"/>
@@ -821,11 +827,6 @@
         <index schema="idx_msdyn_workorderproduct_msdyn_booking" issystem="true">
           <fields>
             <field schema="msdyn_booking"/>
-          </fields>
-        </index>
-        <index schema="idx_msdyn_workorderproduct_msdyn_workorderincident" issystem="true">
-          <fields>
-            <field schema="msdyn_workorderincident"/>
           </fields>
         </index>
         <index schema="idx_msdyn_workorderproduct_ownerid" issystem="true">
@@ -930,16 +931,6 @@
             <field schema="msdyn_booking"/>
           </fields>
         </index>
-        <index schema="idx_msdyn_workorderservice_transactioncurrencyid" issystem="true">
-          <fields>
-            <field schema="transactioncurrencyid"/>
-          </fields>
-        </index>
-        <index schema="idx_msdyn_workorderservice_msdyn_service" issystem="true">
-          <fields>
-            <field schema="msdyn_service"/>
-          </fields>
-        </index>
         <index schema="idx_msdyn_workorderservice_msdyn_workorderincident" issystem="true">
           <fields>
             <field schema="msdyn_workorderincident"/>
@@ -963,6 +954,16 @@
         <index schema="idx_msdyn_workorderservice_ownerid" issystem="true">
           <fields>
             <field schema="ownerid"/>
+          </fields>
+        </index>
+        <index schema="idx_msdyn_workorderservice_msdyn_service" issystem="true">
+          <fields>
+            <field schema="msdyn_service"/>
+          </fields>
+        </index>
+        <index schema="idx_msdyn_workorderservice_transactioncurrencyid" issystem="true">
+          <fields>
+            <field schema="transactioncurrencyid"/>
           </fields>
         </index>
         <index schema="idx_msdyn_workorderservice_msdyn_name" issystem="true">
@@ -1327,14 +1328,14 @@
         <property schema="transactioncurrencyid"/>
       </properties>
       <indexes>
-        <index schema="idx_opportunity_ownerid" issystem="true">
-          <fields>
-            <field schema="ownerid"/>
-          </fields>
-        </index>
         <index schema="idx_opportunity_transactioncurrencyid" issystem="true">
           <fields>
             <field schema="transactioncurrencyid"/>
+          </fields>
+        </index>
+        <index schema="idx_opportunity_ownerid" issystem="true">
+          <fields>
+            <field schema="ownerid"/>
           </fields>
         </index>
         <index schema="idx_opportunity_name" issystem="true">

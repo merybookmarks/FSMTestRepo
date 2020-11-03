@@ -4,6 +4,7 @@
       <link-entity name="msdyn_workorder" alias="L0" from="msdyn_serviceaccount" to="accountid" link-type="inner">
         <filter type="and">
           <condition attribute="mzk_scheduledstartdatetime" operator="today"/>
+          <condition attribute="statecode" operator="eq" value="0"/>
           <filter type="or">
             <filter type="and">
               <condition attribute="mzk_visitstatus" operator="eq" value="275380013"/>
