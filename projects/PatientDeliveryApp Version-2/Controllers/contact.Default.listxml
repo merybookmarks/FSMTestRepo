@@ -29,6 +29,12 @@
           <CellKind>0</CellKind>
           <Anchor>0</Anchor>
         </CellTemplate>
+        <CellTemplate SchemaName="emailaddress1">
+          <StyleName>primary</StyleName>
+          <Bounds>10,0,310,29</Bounds>
+          <CellKind>0</CellKind>
+          <Anchor>5</Anchor>
+        </CellTemplate>
       </SerializedChildren>
     </RowTemplate>
   </SerializedTemplates>
